@@ -12,12 +12,23 @@ export function insertCardIds(cardIds: string[]) {
             )`, (err) => {
                 if (err?.message.includes('UNIQUE constraint failed: cards.id')) {
                     console.log('すでに存在するID: ', cardId)
-                } else {
+                } else if (err) {
                     console.error(err)
+                } else {
+                    console.log('inserted: ', cardId)
                 }
             });
         })
     })
+}
+
+export async function runSql(sql: string, params: any[]): Promise<void> {
+    return new Promise((resolve, reject) => {
+        db.prepare(sql).run(params, (err) => {
+            if (err) reject()
+            else resolve()
+        });
+    });
 }
 
 export async function getAll(sql): Promise<any[]> {
