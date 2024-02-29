@@ -1,0 +1,20 @@
+{
+  "name": "card-database",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "fetch:cards": "playwright test scraping/get-card-ids.spec.ts",
+    "test": "playwright test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.42.0",
+    "@types/node": "^20.11.22"
+  },
+  "volta": {
+    "node": "20.11.1"
+  }
+}
