@@ -7,15 +7,19 @@ import { getCardDetailUrl, setCardTypes, getCardDetail } from "./get-card";
 import { CardDetail, civilization } from '../types/CardDetail';
 
 const DRY_RUN = false
+const MAX_CARDS = 500
 
 test('カードデータを取得', async ({ page }) => {
   await page.goto('https://dm.takaratomy.co.jp/card/');
   const notScrapedCardIds = (await getAll('select id from cards where name is NULL')).map(row => row.id)
 
-  // 500件にしておく
-  for (const cardId of notScrapedCardIds.slice(0, 500)) {
-    // アクセス負荷軽減のため少し待つ
-    await page.waitForTimeout(1000)
+  let count = 0
+  for (const cardId of notScrapedCardIds.slice(0, MAX_CARDS)) {
+    /**
+     * 2024/03/04 500/13.4m
+     */
+    count++
+    await page.waitForTimeout(1000) // アクセス負荷軽減のため
     await page.goto(getCardDetailUrl(cardId))
     const card = await page.evaluate(getCardDetail)
     setCardTypes(card)
@@ -33,6 +37,6 @@ test('カードデータを取得', async ({ page }) => {
       JSON.stringify(card),
       cardId,
     ])
-    console.log('updated: ', `${card.name} (${cardId})`)
+    console.log(`updated(${count}/${MAX_CARDS}): `, `${card.name} (${cardId})`)
   }
 })
