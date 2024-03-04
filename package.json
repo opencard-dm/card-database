@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "fetch:cards": "playwright test scraping/get-card-ids.spec.ts",
     "test": "playwright test",
-    "ts": "ts-node"
+    "ts": "tsx"
   },
   "keywords": [],
   "author": "",
@@ -17,7 +18,7 @@
   "devDependencies": {
     "@playwright/test": "^1.42.0",
     "@types/node": "^20.11.22",
-    "ts-node": "^10.9.2"
+    "tsx": "^4.7.1"
   },
   "volta": {
     "node": "20.11.1"

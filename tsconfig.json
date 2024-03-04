@@ -1,11 +1,19 @@
 {
   // This is an alias to @tsconfig/node16: https://github.com/tsconfig/bases
-  "extends": "ts-node/node16/tsconfig.json",
+  // "extends": "ts-node/node16/tsconfig.json",
   "compilerOptions": {
-    "moduleResolution": "NodeNext",
+    "moduleResolution": "node",
+    "target": "es2018",
+    // "allowSyntheticDefaultImports": true,
+    // "esModuleInterop": true,
+    // "module": "ESNext",
     // typescript options here
   },
+  "exclude": [
+    "node_modules",
+  ],
   "ts-node": {
+    "esm": true,
     "transpileOnly": true,
     "files": true,
     "compilerOptions": {
