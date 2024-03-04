@@ -31,7 +31,7 @@ export async function runSql(sql: string, params: any[]): Promise<void> {
     });
 }
 
-export async function getAll(sql): Promise<any[]> {
+export async function getAll(sql: string): Promise<any[]> {
   return new Promise((resolve, reject) => {
     db.all(sql, (err, rows) => {
         if (err) reject();
