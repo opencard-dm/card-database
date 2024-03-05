@@ -7,6 +7,7 @@ db.serialize(() => {
       id TEXT PRIMARY KEY
     , name TEXT
     , detail JSON
+    , exported_at DATETIME
     , created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     , updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
   )`);
