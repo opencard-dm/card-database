@@ -12,7 +12,8 @@ const MAX_CARDS = 1000
 test('カードデータを取得', async ({ page }) => {
   await page.goto('https://dm.takaratomy.co.jp/card/');
   const notScrapedCardIds = (await getAll('select id from cards where name is NULL')).map(row => row.id)
-
+  
+  const totalTargetCards = Math.min(notScrapedCardIds.length, MAX_CARDS)
   let count = 0
   for (const cardId of notScrapedCardIds.slice(0, MAX_CARDS)) {
     /**
@@ -40,6 +41,6 @@ test('カードデータを取得', async ({ page }) => {
       JSON.stringify(card),
       cardId,
     ])
-    console.log(`updated(${count}/${MAX_CARDS}): `, `${card.name} (${cardId})`)
+    console.log(`updated(${count}/${totalTargetCards}): `, `${card.name} (${cardId})`)
   }
 })
