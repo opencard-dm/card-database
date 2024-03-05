@@ -7,7 +7,7 @@ import { getCardDetailUrl, setCardTypes, getCardDetail } from "./get-card";
 import { CardDetail, civilization } from '../types/CardDetail';
 
 const DRY_RUN = false
-const MAX_CARDS = 500
+const MAX_CARDS = 1000
 
 test('カードデータを取得', async ({ page }) => {
   await page.goto('https://dm.takaratomy.co.jp/card/');
@@ -17,6 +17,9 @@ test('カードデータを取得', async ({ page }) => {
   for (const cardId of notScrapedCardIds.slice(0, MAX_CARDS)) {
     /**
      * 2024/03/04 500/13.4m
+     * 2024/03/04 500/23.2m 1秒の待ち時間を追加
+     * 2024/03/04 1000/38.5m
+     * 2024/03/04 1000/37.3m
      */
     count++
     await page.waitForTimeout(1000) // アクセス負荷軽減のため
