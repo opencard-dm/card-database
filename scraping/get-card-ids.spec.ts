@@ -24,9 +24,9 @@ test('insert card ids', async ({ page }) => {
   for (let pageNum = 1; pageNum <= lastPage; pageNum++) {
     cardIds = []
     // if (pageNum >= 3) return // テスト時に使用
-    // アクセス負荷軽減のため
-    await page.waitForTimeout(1000)
     await page.goto(getPageUrl(pageNum))
+    // アクセス負荷軽減と、カードが表示されるのを待つのを兼ねる
+    await page.waitForTimeout(1000)
     cardIds = await page.evaluate(() => {
       return Array.from(document.querySelectorAll('#cardlist li a')).map((e) => {
         const link = e as HTMLAnchorElement
