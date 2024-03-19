@@ -19,6 +19,10 @@ async function main() {
   console.log('更新対象のレコード数: ', cardRecords.length)
   for (const record of cardRecords.slice(0, MAX_UPDATE_COUNTS)) {
     const cardDetail = JSON.parse(record.detail)
+    if (cardDetail === null) {
+      console.error(record.id)
+      continue
+    }
     cardDetail.civilizations = cardDetail.civilizations
       .map(c => translateCivilization(c))
     try {

@@ -25,7 +25,13 @@ test('カードデータを取得', async ({ page }) => {
     count++
     await page.waitForTimeout(1000) // アクセス負荷軽減のため
     await page.goto(getCardDetailUrl(cardId))
-    const card = await page.evaluate(getCardDetail)
+    let card = null
+    try {
+      card = await page.evaluate(getCardDetail)
+    } catch (error) {
+      console.error(error)
+      continue
+    }
     setCardTypes(card)
     if (DRY_RUN) {
       console.log(card)

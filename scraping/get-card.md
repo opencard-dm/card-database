@@ -9,3 +9,8 @@
 - dm34 1s-001
 - dm34 1s-002
 - dm34 1s-003
+
+## スクレピングが失敗するURL
+
+- https://dm.takaratomy.co.jp/card/detail/?id=dmd34-006
+- https://dm.takaratomy.co.jp/card/detail/?id=promoy18-csp
