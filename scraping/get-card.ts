@@ -123,5 +123,6 @@ export function setCardTypes(card: CardDetail) {
 
 export function getCardDetailUrl(cardId: string) {
   // https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-OR1
-  return `https://dm.takaratomy.co.jp/card/detail/?id=${cardId}`
+  // cardIdにスペースが含まれることがあるため、URLエンコードする
+  return `https://dm.takaratomy.co.jp/card/detail/?id=${encodeURI(cardId)}`
 }
