@@ -40,3 +40,12 @@ test('3面ドラグハート', async ({ page }) => {
     expect(card.transitions[0].subtypes).toEqual(expect.arrayContaining(['ドラグハート・フォートレス']))
     expect(card.transitions[1].subtypes).toEqual(expect.arrayContaining(['ドラグハート・クリーチャー']))
 });
+
+// npm test scraping/get-card.spec.ts -- -g "超化獣"
+test('超化獣', async ({ page }) => {
+    const cardId = 'dm24rp1-Sec01a'
+    const card = await getCardFromPage(page, cardId)
+    console.log(card)
+    expect(card.types).toEqual(['クリーチャー'])
+    expect(card.combined_card.subtypes).toEqual(['クリーチャー'])
+});

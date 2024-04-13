@@ -45,7 +45,9 @@ export function getCardDetail() {
   }
   // ツインパクトの場合は、cardPopupDetail が２つある
   if (details.length == 2) {
-    card.subtypes.push('ツインパクト')
+    if (!card.races.includes('超化獣')) {
+      card.subtypes.push('ツインパクト')
+    }
     card.combined_card = getCardDetailFromElement(details[1])
   }
   return card

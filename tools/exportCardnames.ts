@@ -1,5 +1,5 @@
 /**
- * npm run ts tools/exportCardnames.ts
+ * npx tsx tools/exportCardnames.ts
  */
 import { getAll } from '../scraping/database';
 import { writeFileSync } from 'fs'

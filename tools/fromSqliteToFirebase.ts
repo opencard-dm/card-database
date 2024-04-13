@@ -1,5 +1,5 @@
 /**
- * npm run ts tools/fromSqliteToFirebase.ts
+ * npx tsx tools/fromSqliteToFirebase.ts
  */
 import { FireStore } from './firestore'
 import { getCardDetailFromRecord } from './helpers';

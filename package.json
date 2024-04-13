@@ -7,8 +7,7 @@
   "scripts": {
     "fetch:cards": "playwright test scraping/get-card-ids.spec.ts",
     "fetch:cardDetails": "playwright test get-card.main.spec.ts",
-    "test": "playwright test",
-    "ts": "tsx"
+    "test": "playwright test"
   },
   "keywords": [],
   "author": "",
