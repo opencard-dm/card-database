@@ -2,7 +2,8 @@
  * npx tsx tools/fromSqliteToFirebase.ts
  */
 import { FireStore } from './firestore'
-import { getCardDetailFromRecord } from './helpers';
+import { getCardDetailFromRecord } from './helpers'
+import { CardDetail } from '../types/CardDetail';
 
 import { getAll, runSql } from '../scraping/database';
 import { writeFileSync } from 'fs'
@@ -18,13 +19,21 @@ async function main() {
   )
   console.log('更新対象のレコード数: ', cardRecords.length)
   for (const record of cardRecords.slice(0, MAX_UPDATE_COUNTS)) {
-    const cardDetail = JSON.parse(record.detail)
+    const cardDetail = JSON.parse(record.detail) as CardDetail
     if (cardDetail === null) {
       console.error(record.id)
       continue
     }
     cardDetail.civilizations = cardDetail.civilizations
       .map(c => translateCivilization(c))
+    if (cardDetail.combined_card) {
+      cardDetail.combined_card.civilizations = cardDetail.combined_card.civilizations
+        .map(c => translateCivilization(c))
+    }
+    cardDetail.transitions?.forEach((c) => {
+      c.civilizations = cardDetail.civilizations
+        .map(c => translateCivilization(c))
+    })
     try {
       FireStore.db.doc(`/cards/${record.id}`).set(cardDetail)
       const updateQuery = 'update cards'
